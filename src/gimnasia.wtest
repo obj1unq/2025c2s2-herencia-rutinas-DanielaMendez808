@@ -39,9 +39,10 @@ test "Punto 2: personas sedentarias"{
 }
 test "Punto 2 : personas atletas"{
 	const bob =  new PersonaAtleta(peso=40)
-	assert.equals(39.725, bob.aplicarRutina(correrEnLaPlaya))
-
-	
+	assert.equals(39.725, bob.aplicarRutina(correrEnLaPlaya).truncate(3))
+	assert.equals(37.812, bob.aplicarRutina(maratonBA).truncate(3))
+	assert.equals(40, bob.aplicarRutina(remarEnElDelta))
+	assert.equals(39.406, bob.aplicarRutina(remarEnCaminoRemeros).truncate(3))
 }
 //Punto 3: clubes
 	//const recreo = //un predio con correrEnLaPlaya y maratonBA

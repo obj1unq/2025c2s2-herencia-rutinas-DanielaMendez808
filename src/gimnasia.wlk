@@ -57,8 +57,10 @@ class PersonaSedentaria inherits Persona{
             self.error ( "la persona pesa menos de" + n)
         }}
     override method aplicarRutina(rutina){
-        self.verificarQuePesaMasDe(50)
-        return super(rutina)
+        if(self.peso()< 50){
+            return self.peso()
+        }else{
+        return super(rutina)}
     }
 }
 
@@ -72,12 +74,14 @@ class PersonaAtleta inherits Persona{
     override method kilosPorCaloriasQuePierde(){
         return 8000}
     method verificarQueRutinaConsumaMasDe10000(rutina){
-        if(self.pesoPerdido(rutina) < 10000){
+        if(rutina.caloriasBajadas(self.tiempo()) < 10000){
             self.error("La rutina consume menos de 10000 calorias")
         }
     }
     override method aplicarRutina(rutina){
-        self.verificarQueRutinaConsumaMasDe10000(rutina)
-        return super(rutina) 
+        if (rutina.caloriasBajadas(self.tiempo()) < 10000){
+            return self.peso()
+        }else{
+        return super(rutina)}
     }
 }
