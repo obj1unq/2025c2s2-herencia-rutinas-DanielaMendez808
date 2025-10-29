@@ -1,17 +1,49 @@
 import gimnasia.*
 
 describe "rutinas" {
+	const correrEnLaPlaya = new Running(intensidad = 1.2)
+	const maratonBA = new Maraton(intensidad = 1.5)
+	const remarEnElDelta = new Remo()
+	const remarEnCaminoRemeros = new RemoDeCompeticion()
+  
+test "Punto 1: rutinas con running"{
 
-//Punto 1: rutinas
-//	const correrEnLaPlaya = // Una actividad de running con intensisdad 1.2
-//	const remarEnElDelta = // Una actividad de remo
-//	const remarEnCaminoRemeros = // Una actividad de remo comptetitivo
-//	const maratonBA = //Una maraton con intensidad 1.5
+	assert.equals(360, correrEnLaPlaya.caloriasBajadas(5))
+	assert.equals(10200,correrEnLaPlaya.caloriasBajadas(90))
 
-//Punto 2: personas
-	//const calamardo = //Una persona Sedentaria con peso 60 y tiempo de ejercicio 5
- 	//const bob =  // Una persona atleta con peso 40 
+}
+ test "Punto 1: rutinas con Maraton"{
+	assert.equals(900, maratonBA.caloriasBajadas(5))
+	assert.equals(25500, maratonBA.caloriasBajadas(90))
+}
 
+test "Punto 1: rutinas con remo"{
+
+	assert.equals(520, remarEnElDelta.caloriasBajadas(5))
+	assert.equals(9360, remarEnElDelta.caloriasBajadas(90))
+}
+test "Punto 1 : rutinas con remo de competencia" {
+
+	assert.equals(510, remarEnCaminoRemeros.caloriasBajadas(5))
+	assert.equals(12750, remarEnCaminoRemeros.caloriasBajadas(90))
+}	
+
+test "Punto 2: personas sedentarias"{
+	const calamardo = new PersonaSedentaria(peso = 60,tiempo = 5)
+	assert.equals(59.948,calamardo.aplicarRutina(correrEnLaPlaya).truncate(3))
+	assert.equals(59.871,calamardo.aplicarRutina(maratonBA).truncate(3))
+	assert.equals(59.925,calamardo.aplicarRutina(remarEnElDelta).truncate(3))
+	assert.equals(59.927,calamardo.aplicarRutina(remarEnCaminoRemeros).truncate(3))
+	calamardo.peso(40)
+	assert.throwsException({calamardo.aplicarRutina(correrEnLaPlaya)})
+}
+test "Punto 2 : personas atletas"{
+	const bob =  new PersonaAtleta(peso=40)
+	assert.equals(39.725, bob.aplicarRutina(correrEnLaPlaya).truncate(3))
+	assert.equals(37.812, bob.aplicarRutina(maratonBA).truncate(3))
+	assert.equals(40, bob.aplicarRutina(remarEnElDelta))
+	assert.equals(39.406, bob.aplicarRutina(remarEnCaminoRemeros).truncate(3))
+}
 //Punto 3: clubes
 	//const recreo = //un predio con correrEnLaPlaya y maratonBA
 	//const nautico = //un predio con remarEnElDelta y remarEnCaminoRemeros
