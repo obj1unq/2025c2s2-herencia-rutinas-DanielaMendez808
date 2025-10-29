@@ -1,8 +1,6 @@
 class Rutina {
-    var property intensidad = 0
-    method descanso(tiempo){
-        return 0
-    }
+    method intensidad()
+    method descanso(tiempo)
 
     method caloriasBajadas(tiempo){
         return 100 *(tiempo - self.descanso(tiempo)) * self.intensidad()
@@ -63,7 +61,7 @@ class PersonaSedentaria inherits Persona{
         return super(rutina)}
     }
 }
-
+//revisar el tema de verificacion, poner el metodo en persona y hacer override en ambas subclases en punto 2 normal.
 class PersonaAtleta inherits Persona{
     override method tiempo() {
         return 90
